@@ -1,6 +1,5 @@
 #!pip install mysql-connector-python
 
-
 import mysql.connector
 connection = mysql.connector.connect(
 host = 'localhost',
@@ -24,6 +23,7 @@ def menu():
     print("4    Specify employee by employee ID")
     print("5    Department wise list of employees")
     print("6    All the employees")
+    print(" ")
     
     option = int(input("Enter your input: "))
     return option
@@ -35,8 +35,8 @@ while True:
     
     choice = menu()
 
+#1  Adding an employee
     
-#1    
     if choice == 0:
         print(" ")
         print("Thanks!")
@@ -45,7 +45,9 @@ while True:
         break
         
 
-#2
+    
+#2 Updating an employee record
+    
     elif choice == 1:
         sql = "INSERT INTO emps(id, name, age, salary, department_id) VALUES (%s, %s, %s, %s, %s)"
 
@@ -75,7 +77,6 @@ while True:
             print("Employee added successfully!")
             print(" ")
 
-
             add_another = input("Press ENTER to add another Employee")
             if add_another != '':
                 print(" ")
@@ -83,8 +84,10 @@ while True:
                 print(" ")
                 break
 
+    
                                 
-#3
+#3  Deleting an employee record
+    
     elif choice == 2:
         sql = ("UPDATE emps SET name = %s, age = %s, salary = %s, department_id = %s WHERE id = %s")
         
@@ -129,8 +132,10 @@ while True:
         print("Employee Details Updated Successfully!")
         print(" ")
 
+    
         
-#4
+#4  Specifying employee by employee ID
+    
     elif choice == 3:
 
         sql = ("DELETE FROM emps WHERE id = %s")
@@ -144,7 +149,8 @@ while True:
         print(" ")
 
 
-#5
+#5  Department wise list of employees
+    
     elif choice == 4:
         
         sql = "SELECT * FROM emps WHERE id = %s"
@@ -157,10 +163,13 @@ while True:
             for row in records:
                 print(row)
         else:
-            print("Employee not found.")
+            print("Employee not found!")
+            print(" ")
+            
 
             
-#6
+#6  Department wise list of all the employees
+    
     elif choice == 5: 
         
         sql = "SELECT * FROM emps WHERE department_id = %s"
@@ -176,7 +185,8 @@ while True:
             print(" ")
             
             
-#7
+#7  Display all employees
+    
     elif choice == 6:
         
         sql = "SELECT * FROM emps"
